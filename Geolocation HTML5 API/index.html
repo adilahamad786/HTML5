@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geo Api</title>
+</head>
+<body>
+    <h1>Click on below button for get your langitude and latitude</h1>
+    <p id="coords"></p>
+    <input type="button" onclick="getGeo()" value="get Geo Coordinates">
+
+    <script>
+        getGeo = () => {
+            if (!navigator.geolocation)
+                console.log("Your browser doesn't supports Geolocation API!");
+
+            window.navigator.geolocation.getCurrentPosition(function mylocation(position){
+                document.getElementById("coords").innerHTML = `Latitude : ${position.coords.latitude} and Longitude : ${position.coords.longitude}`
+            })
+        }
+    </script>
+
+</body>
+</html>
