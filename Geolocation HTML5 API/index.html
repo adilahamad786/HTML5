@@ -13,11 +13,23 @@
     <script>
         getGeo = () => {
             if (!navigator.geolocation)
-                console.log("Your browser doesn't supports Geolocation API!");
+                alert("Your browser doesn't supports Geolocation API!");
 
-            window.navigator.geolocation.getCurrentPosition(function mylocation(position){
+            window.navigator.geolocation.getCurrentPosition(
+                function mylocation(position){
                 document.getElementById("coords").innerHTML = `Latitude : ${position.coords.latitude} and Longitude : ${position.coords.longitude}`
-            })
+                },
+                (error) => {
+                    if (error.code == 0)
+                        alert("UNKNOWN_ERROR");
+                    if (error.code == 1)
+                        alert("PERMISSION_DENIED");
+                    if (error.code == 2)
+                        alert("POSITION_UNAVAILABLE");
+                    if (error.code == 3)
+                        alert("TIMEOUT");
+                }
+            )
         }
     </script>
 
